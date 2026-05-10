@@ -23,20 +23,20 @@ services:
     volumes:
       - user-db-data:/var/lib/postgresql/data
 
-#   # ─────────────────────────────────────────
-#   # Database for product-service
-#   # ─────────────────────────────────────────
-#   product-db:
-#     image: postgres:15
-#     container_name: product-db
-#     environment:
-#       POSTGRES_DB: productdb
-#       POSTGRES_USER: testuser
-#       POSTGRES_PASSWORD: testpass
-#     ports:
-#       - "5434:5432"
-#     volumes:
-#       - product-db-data:/var/lib/postgresql/data
+  # ─────────────────────────────────────────
+  # Database for product-service
+  # ─────────────────────────────────────────
+  product-db:
+    image: postgres:15
+    container_name: product-db
+    environment:
+      POSTGRES_DB: productdb
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: testpass
+    ports:
+      - "5434:5432"
+    volumes:
+      - product-db-data:/var/lib/postgresql/data
 
 #   # ─────────────────────────────────────────
 #   # Database for order-service
@@ -55,5 +55,5 @@ services:
 
 volumes:
   user-db-data:
-#   product-db-data:
+  product-db-data:
 #   order-db-data:
