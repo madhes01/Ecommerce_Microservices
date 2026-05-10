@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.deloitte.product_service.dto.request.ProductRequestDTO;
 import com.deloitte.product_service.dto.response.ProductResponseDTO;
 import com.deloitte.product_service.entity.Product;
+import com.deloitte.product_service.exception.ResourceNotFoundException;
 import com.deloitte.product_service.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,7 @@ public class ProductService {
 
     public ProductResponseDTO getProductById(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
         logger.info("Retrieved product with ID: {}", id);
         return mapToDTO(product);
     }
@@ -53,7 +54,7 @@ public class ProductService {
 
     public ProductResponseDTO updateProduct(Long id, ProductRequestDTO request) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
         product.setName(request.getName());
         product.setDescription(request.getDescription());
         product.setPrice(request.getPrice());
@@ -66,7 +67,7 @@ public class ProductService {
 
     public String deleteProduct(Long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + id));
         productRepository.delete(product);
         logger.info("Deleted product with ID: {}", id);
         return "Product deleted successfully";
@@ -74,7 +75,7 @@ public class ProductService {
 
     public void reduceStock(Long productId, Integer quantity) {
         Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with ID: " + productId));
             if (product.getStock() < quantity) {
                 throw new RuntimeException("Insufficient stock for product ID: " + productId);
             }
