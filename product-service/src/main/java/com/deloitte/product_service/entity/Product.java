@@ -1,5 +1,19 @@
 package com.deloitte.product_service.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "products")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -16,7 +30,7 @@ public class Product {
     public String description;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    public Double price;
+    public BigDecimal price;
 
     @Column(nullable = false)
     public Integer stock;
