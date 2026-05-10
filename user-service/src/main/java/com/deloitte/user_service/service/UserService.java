@@ -2,8 +2,6 @@ package com.deloitte.user_service.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.apache.catalina.connector.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,6 @@ import com.deloitte.user_service.repository.UserRepository;
 import com.deloitte.user_service.security.JwtService;
 
 import lombok.RequiredArgsConstructor;
-
 
 @Service
 @RequiredArgsConstructor

@@ -14,6 +14,7 @@ import com.deloitte.user_service.dto.request.RegisterRequestDTO;
 import com.deloitte.user_service.dto.response.UserResponseDTO;
 import com.deloitte.user_service.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -27,16 +28,19 @@ public class AuthController {
 
     private final UserService userService;
 
+    @Operation(summary = "Register a new user")
     @PostMapping("/register")
     public ResponseEntity<String> register(@Valid @RequestBody RegisterRequestDTO request) {
         return ResponseEntity.status(201).body(userService.register(request));
     }
 
+    @Operation(summary = "Login and receive a JWT token")
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid @RequestBody LoginRequestDTO request) {
         return ResponseEntity.ok(userService.login(request));
     }
 
+    @Operation(summary = "Get all users (Admin only)")
     @GetMapping("/users")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
