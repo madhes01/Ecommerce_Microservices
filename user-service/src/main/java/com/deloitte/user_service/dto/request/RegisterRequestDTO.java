@@ -2,6 +2,7 @@ package com.deloitte.user_service.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import com.deloitte.user_service.entity.Role;
 
 @Data
 public class RegisterRequestDTO {
@@ -16,6 +17,6 @@ public class RegisterRequestDTO {
     private String password;
 
     @NotBlank(message = "Role is required")
-    private String role;
+    private Role role;
 
 }
